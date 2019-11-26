@@ -5,6 +5,8 @@
  */
 package javaapplication7;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -74,19 +76,29 @@ public class TriezFruits extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        File f = new File("/home/pi/hx711/temp/tarage_java.txt");
+        addWindowListener(new WindowAdapter(){
+        @Override
+    public void windowClosing(WindowEvent we){
+        System.exit(0);
+        }
+        });
+        System.out.println("lecture du tarage");
+
+        File f = new File("/home/pi/hx711py/temp/tarage_java.txt");
 
         while (!(f.isFile())) { 
+            System.out.println("entree dans la boucle de verif du fichier 1");
             try {
                 // do something
-                TimeUnit.SECONDS.sleep(1);
+                TimeUnit.SECONDS.sleep(4);
+                System.out.println("delai de 1 s");
             } catch (InterruptedException ex) {
                 Logger.getLogger(TriezFruits.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         BufferedReader br = null;
         try {
-            br = new BufferedReader(new FileReader("/home/pi/hx711/temp/tarage_java.txt"));
+            br = new BufferedReader(new FileReader("/home/pi/hx711py/temp/tarage_java.txt"));
         } catch (FileNotFoundException ex) {
             Logger.getLogger(TriezFruits.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -101,13 +113,21 @@ public class TriezFruits extends javax.swing.JFrame {
 
             while (line != "1") {
             try {
+                System.out.println("toujours pas eu de 1");
                 line = br.readLine();
+                
+                TimeUnit.SECONDS.sleep(1);
+
             } catch (IOException ex) {
                 Logger.getLogger(TriezFruits.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                } catch (InterruptedException ex) {
+                Logger.getLogger(TriezFruits.class.getName()).log(Level.SEVERE, null, ex);
+            }
             }
         new test_weight().setVisible(true);
         this.setVisible(false);
+        System.out.println("passage a l ecran de pesee");
+
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
