@@ -5,6 +5,15 @@
  */
 package javaapplication7;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author hamza
@@ -65,7 +74,41 @@ public class TriezFruits extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        File f = new File("/home/pi/hx711/temp/tarage_java.txt");
+
+        while (!(f.isFile())) { 
+            try {
+                // do something
+                TimeUnit.SECONDS.sleep(1);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(TriezFruits.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        BufferedReader br = null;
+        try {
+            br = new BufferedReader(new FileReader("/home/pi/hx711/temp/tarage_java.txt"));
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(TriezFruits.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+            StringBuilder sb = new StringBuilder();
+            String line = null;
+        try {
+            line = br.readLine();
+        } catch (IOException ex) {
+            Logger.getLogger(TriezFruits.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+            while (line != "1") {
+            try {
+                line = br.readLine();
+            } catch (IOException ex) {
+                Logger.getLogger(TriezFruits.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        new test_weight().setVisible(true);
+        this.setVisible(false);
+// TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
