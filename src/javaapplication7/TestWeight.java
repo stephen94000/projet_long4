@@ -33,8 +33,8 @@ public class TestWeight extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,15 +53,13 @@ public class TestWeight extends javax.swing.JFrame {
         jLabel1.setText("Pesee de poids");
         jPanel1.add(jLabel1);
         jLabel1.setBounds(160, 250, 160, 50);
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(270, 250, 360, 50);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication7/Groupe 18.png"))); // NOI18N
         jLabel2.setText("jLabel2");
         jPanel1.add(jLabel2);
         jLabel2.setBounds(0, 0, 810, 480);
-
-        jLabel3.setText("jLabel1");
-        jPanel1.add(jLabel3);
-        jLabel3.setBounds(240, 250, 390, 50);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -93,11 +91,12 @@ public class TestWeight extends javax.swing.JFrame {
                 Logger.getLogger(TestWeight.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+        String df = null;
         BufferedReader br1 = null;
         StringBuilder sb = new StringBuilder();
         String line = null;
         try {
-            String df = null;
+            
             while (df == null) {
                 br1 = new BufferedReader(new FileReader("/home/pi/hx711py/temp/pesee_java.txt"));
                 System.out.println("toujours pas eu de pesee");
@@ -105,12 +104,14 @@ public class TestWeight extends javax.swing.JFrame {
                 df = line;
                 TimeUnit.SECONDS.sleep(1);
                 System.out.println(line);
+                jLabel3.setText("Pesee en cours");
             }
         } catch (IOException ex) {
             Logger.getLogger(TestWeight.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InterruptedException ex) {
                 Logger.getLogger(TestWeight.class.getName()).log(Level.SEVERE, null, ex);
             }
+        jLabel3.setText(df+"g");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
