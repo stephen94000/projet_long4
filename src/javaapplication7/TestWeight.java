@@ -10,7 +10,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 /**
  *
- * @author hamza
+ * @author hamza94000
  */
 public class TestWeight extends javax.swing.JFrame {
 
