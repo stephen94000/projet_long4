@@ -110,6 +110,8 @@ public class TriezFruits extends javax.swing.JFrame {
                 df = line;
                 TimeUnit.SECONDS.sleep(1);
                 System.out.println(line);
+                
+                //changer la valeur du poids dans le label.
             }
         } catch (IOException ex) {
             Logger.getLogger(TriezFruits.class.getName()).log(Level.SEVERE, null, ex);
