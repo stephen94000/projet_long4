@@ -4,17 +4,20 @@
  * and open the template in the editor.
  */
 package javaapplication7;
-
+import java.io.*;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author hamza
  */
-public class Test_pesee extends javax.swing.JFrame {
+public class TestWeight extends javax.swing.JFrame {
 
     /**
      * Creates new form NewJFrame1
      */
-    public Test_pesee() {
+    public TestWeight() {
         initComponents();
     }
 
@@ -29,7 +32,9 @@ public class Test_pesee extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,12 +48,20 @@ public class Test_pesee extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(10, 10, 780, 460);
+        jButton1.setBounds(10, 0, 780, 460);
+
+        jLabel1.setText("Pesee de poids");
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(160, 250, 160, 50);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication7/Groupe 18.png"))); // NOI18N
         jLabel2.setText("jLabel2");
         jPanel1.add(jLabel2);
         jLabel2.setBounds(0, 0, 810, 480);
+
+        jLabel3.setText("jLabel1");
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(240, 250, 390, 50);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -65,7 +78,39 @@ public class Test_pesee extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        //jLabel3.setText(x);        // TODO add your handling code here:
+        System.out.println("poids disponible!");
+
+        File f = new File("/home/pi/hx711py/temp/pesee_java.txt");
+
+        while (!(f.isFile())) { 
+            System.out.println("entree dans la boucle de verif du fichier 2");
+            try {
+                // do something
+                TimeUnit.SECONDS.sleep(4);
+                System.out.println("delai de 1 s");
+            } catch (InterruptedException ex) {
+                Logger.getLogger(TestWeight.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        BufferedReader br1 = null;
+        StringBuilder sb = new StringBuilder();
+        String line = null;
+        try {
+            String df = null;
+            while (df == null) {
+                br1 = new BufferedReader(new FileReader("/home/pi/hx711py/temp/pesee_java.txt"));
+                System.out.println("toujours pas eu de pesee");
+                line = br1.readLine();
+                df = line;
+                TimeUnit.SECONDS.sleep(1);
+                System.out.println(line);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(TestWeight.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (InterruptedException ex) {
+                Logger.getLogger(TestWeight.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -85,13 +130,13 @@ public class Test_pesee extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Test_pesee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TestWeight.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Test_pesee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TestWeight.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Test_pesee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TestWeight.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Test_pesee.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TestWeight.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -129,14 +174,16 @@ public class Test_pesee extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Test_pesee().setVisible(true);
+                new TestWeight().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

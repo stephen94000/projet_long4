@@ -9,9 +9,11 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
 import java.io.File;
+import static java.io.FileDescriptor.in;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import static java.lang.System.in;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -96,35 +98,25 @@ public class TriezFruits extends javax.swing.JFrame {
                 Logger.getLogger(TriezFruits.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        BufferedReader br = null;
+        BufferedReader br1 = null;
+        StringBuilder sb = new StringBuilder();
+        String line = null;
         try {
-            br = new BufferedReader(new FileReader("/home/pi/hx711py/temp/tarage_java.txt"));
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(TriezFruits.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-            StringBuilder sb = new StringBuilder();
-            String line = null;
-        try {
-            line = br.readLine();
+            String df = null;
+            while (df == null) {
+                br1 = new BufferedReader(new FileReader("/home/pi/hx711py/temp/tarage_java.txt"));
+                System.out.println("toujours pas eu de 1");
+                line = br1.readLine();
+                df = line;
+                TimeUnit.SECONDS.sleep(1);
+                System.out.println(line);
+            }
         } catch (IOException ex) {
             Logger.getLogger(TriezFruits.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-            while (line != "1") {
-            try {
-                System.out.println("toujours pas eu de 1");
-                line = br.readLine();
-                
-                TimeUnit.SECONDS.sleep(1);
-
-            } catch (IOException ex) {
-                Logger.getLogger(TriezFruits.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (InterruptedException ex) {
+        } catch (InterruptedException ex) {
                 Logger.getLogger(TriezFruits.class.getName()).log(Level.SEVERE, null, ex);
             }
-            }
-        new test_weight().setVisible(true);
+        new TestWeight().setVisible(true);
         this.setVisible(false);
         System.out.println("passage a l ecran de pesee");
 
