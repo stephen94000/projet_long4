@@ -112,6 +112,7 @@ public class TestWeight extends javax.swing.JFrame {
                 Logger.getLogger(TestWeight.class.getName()).log(Level.SEVERE, null, ex);
             }
         jLabel3.setText(df+"g");
+    
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
