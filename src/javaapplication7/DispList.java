@@ -7,9 +7,12 @@ package javaapplication7;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -21,17 +24,18 @@ import javax.swing.table.DefaultTableModel;
 public class DispList extends javax.swing.JFrame {
 
     //modify to read an element from rpi files.
-    public static String FilePath = "C:\\Users\\hamza\\Desktop\\Projet fruit\\text_liste1.txt";
+    public static String FilePath = "/home/pi/tensorflow1/models/research/object_detection/factures/facture_affichage.txt";
     public File file =  new File(FilePath);
     /**
      * Creates new form NewJFrame1
      */
     public DispList() {
         initComponents();
-         try {
+        try {
+                
                 BufferedReader br = new BufferedReader(new FileReader(FilePath));
                 String firstLine = br.readLine().trim();
-                String[] columnsName = firstLine.split(" ");
+                String[] columnsName = firstLine.split("\\t");
                 DefaultTableModel model;
                 model = (DefaultTableModel)jTable1.getModel();
                 model.setColumnIdentifiers(columnsName);
@@ -40,7 +44,7 @@ public class DispList extends javax.swing.JFrame {
                 
                 for (Object tableLine : tableLines) {
                     String line = tableLine.toString().trim();
-                    String[] dataRow = line.split(" ");
+                    String[] dataRow = line.split("\\t");
                     model.addRow(dataRow);
                 }
             } catch (IOException ex) {
@@ -58,8 +62,8 @@ public class DispList extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
@@ -68,20 +72,25 @@ public class DispList extends javax.swing.JFrame {
 
         jPanel1.setLayout(null);
 
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton1);
-        jButton1.setBounds(50, 370, 190, 80);
-
         jButton2.setBorderPainted(false);
         jButton2.setContentAreaFilled(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton2);
         jButton2.setBounds(303, 370, 190, 80);
+
+        jButton3.setBackground(new java.awt.Color(255, 0, 0));
+        jButton3.setText("VALIDER SELECTION");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton3);
+        jButton3.setBounds(50, 370, 190, 80);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -118,10 +127,74 @@ public class DispList extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        new TriezFruits().setVisible(true);
-        this.setVisible(false);         //CODE 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    
+    // BOUTON QUITTER LE LOGICIEL
+    
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        SimpleDateFormat formatter = new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss");  
+        Date date = new Date();  
+        
+        System.out.println(formatter.format(date));  
+        
+        File afile = new File(FilePath);
+
+        if(afile.renameTo(new File("/home/pi/tensorflow1/models/research/object_detection/factures/archives/facture_of " + date))){
+            System.out.println("File is moved successful!");
+        }
+        else{
+            System.out.println("File is failed to move!");
+        }
+        
+        FileWriter myWriterClose = null;
+        try {
+            myWriterClose = new FileWriter("/home/pi/tensorflow1/models/research/object_detection/ordres/filenameerror.txt");
+        } catch (IOException ex) {
+            Logger.getLogger(DispList.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            myWriterClose.write("1");
+        } catch (IOException ex) {
+            Logger.getLogger(DispList.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            myWriterClose.close();
+        } catch (IOException ex) {
+            Logger.getLogger(DispList.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.setVisible(false);  
+        new EndType().setVisible(true);
+              // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        
+        
+        FileWriter myWriter = null;
+        try {
+            myWriter = new FileWriter("/home/pi/tensorflow1/models/research/object_detection/ordres/filename.txt");
+        } catch (IOException ex) {
+            Logger.getLogger(DispList.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            myWriter.write("1");
+        } catch (IOException ex) {
+            Logger.getLogger(DispList.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            myWriter.close();
+        } catch (IOException ex) {
+            Logger.getLogger(DispList.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println("Successfully wrote to the file.");
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(DispList.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println("WAIT 1 SEC DONE");
+        new DispList().setVisible(true);
+        this.setVisible(false);         // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -172,8 +245,8 @@ public class DispList extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
