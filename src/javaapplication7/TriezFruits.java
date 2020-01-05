@@ -86,7 +86,7 @@ public class TriezFruits extends javax.swing.JFrame {
         });
         System.out.println("lecture du tarage");
 
-        File f = new File("/home/pi/hx711py/temp/tarage_java.txt");
+        File f = new File("/home/pi/tensorflow1/models/research/object_detection/hx711/temp/tarage_java.txt");
 
         while (!(f.isFile())) { 
             System.out.println("entree dans la boucle de verif du fichier 1");
@@ -104,7 +104,7 @@ public class TriezFruits extends javax.swing.JFrame {
         try {
             String df = null;
             while (df == null) {
-                br1 = new BufferedReader(new FileReader("/home/pi/hx711py/temp/tarage_java.txt"));
+                br1 = new BufferedReader(new FileReader("/home/pi/tensorflow1/models/research/object_detection/hx711/temp/tarage_java.txt"));
                 System.out.println("toujours pas eu de 1");
                 line = br1.readLine();
                 df = line;
@@ -118,9 +118,9 @@ public class TriezFruits extends javax.swing.JFrame {
         } catch (InterruptedException ex) {
                 Logger.getLogger(TriezFruits.class.getName()).log(Level.SEVERE, null, ex);
             }
-        new TestWeight().setVisible(true);
+        new DispList().setVisible(true);
         this.setVisible(false);
-        System.out.println("passage a l ecran de pesee");
+        System.out.println("passage a l ecran d'affichage des listes");
 
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed

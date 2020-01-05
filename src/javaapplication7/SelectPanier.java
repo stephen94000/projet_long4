@@ -84,12 +84,12 @@ public class SelectPanier extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         new TriezFruits().setVisible(true);
         this.setVisible(false);  // TODO add your handling code here:
-        try {
-            Process exec = Runtime.getRuntime().exec("sudo python /home/pi/hx711py/comjava.py");
-            System.out.println("le scipt python a bien ete lance");
-        } catch (IOException ex) {
-            Logger.getLogger(SelectPanier.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            Process exec = Runtime.getRuntime().exec("sudo python /home/pi/hx711py/comjava.py");
+//            System.out.println("le scipt python a bien ete lance");
+//        } catch (IOException ex) {
+//            Logger.getLogger(SelectPanier.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

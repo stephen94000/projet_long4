@@ -12,13 +12,22 @@ import java.util.logging.Logger;
  *
  * @author hamza94000
  */
-public class TestWeight extends javax.swing.JFrame {
+public class EndType extends javax.swing.JFrame {
 
     /**
      * Creates new form NewJFrame1
      */
-    public TestWeight() {
+    public EndType() {
         initComponents();
+        System.out.println("WAITING 5 SEC TO NEXT SESSION");
+        try {
+            TimeUnit.SECONDS.sleep(5);
+        } catch (InterruptedException ex) {
+        Logger.getLogger(EndType.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println("WAITING DONE, NEW SESSION LAUNCHED");
+        this.setVisible(false);     
+        new MainScreen().setVisible(true);
     }
 
     /**
@@ -32,8 +41,6 @@ public class TestWeight extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -50,13 +57,7 @@ public class TestWeight extends javax.swing.JFrame {
         jPanel1.add(jButton1);
         jButton1.setBounds(10, 0, 780, 460);
 
-        jLabel1.setText("Pesee de poids");
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(160, 250, 160, 50);
-        jPanel1.add(jLabel3);
-        jLabel3.setBounds(270, 250, 360, 50);
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication7/Groupe 18.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication7/Groupe 16.png"))); // NOI18N
         jLabel2.setText("jLabel2");
         jPanel1.add(jLabel2);
         jLabel2.setBounds(0, 0, 810, 480);
@@ -77,42 +78,6 @@ public class TestWeight extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         //jLabel3.setText(x);        // TODO add your handling code here:
-        System.out.println("poids disponible!");
-
-        File f = new File("/home/pi/hx711py/temp/pesee_java.txt");
-
-        while (!(f.isFile())) { 
-            System.out.println("entree dans la boucle de verif du fichier 2");
-            try {
-                // do something
-                TimeUnit.SECONDS.sleep(4);
-                System.out.println("delai de 1 s");
-            } catch (InterruptedException ex) {
-                Logger.getLogger(TestWeight.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        String df = null;
-        BufferedReader br1 = null;
-        StringBuilder sb = new StringBuilder();
-        String line = null;
-        try {
-            
-            while (df == null) {
-                br1 = new BufferedReader(new FileReader("/home/pi/hx711py/temp/pesee_java.txt"));
-                System.out.println("toujours pas eu de pesee");
-                line = br1.readLine();
-                df = line;
-                TimeUnit.SECONDS.sleep(1);
-                System.out.println(line);
-                jLabel3.setText("Pesee en cours");
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(TestWeight.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InterruptedException ex) {
-                Logger.getLogger(TestWeight.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        jLabel3.setText(df+"g");
-    
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -132,14 +97,110 @@ public class TestWeight extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TestWeight.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EndType.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TestWeight.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EndType.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TestWeight.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EndType.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TestWeight.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EndType.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -176,16 +237,14 @@ public class TestWeight extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TestWeight().setVisible(true);
-            }
+                new EndType().setVisible(true);
+                }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
