@@ -32,7 +32,6 @@ public class SelectPanier extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
@@ -40,29 +39,17 @@ public class SelectPanier extends javax.swing.JFrame {
 
         jPanel1.setLayout(null);
 
-        jButton2.setBorderPainted(false);
-        jButton2.setContentAreaFilled(false);
-        jButton2.setOpaque(false);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton2);
-        jButton2.setBounds(133, 313, 230, 100);
-
         jButton1.setBorderPainted(false);
         jButton1.setContentAreaFilled(false);
-        jButton1.setOpaque(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(433, 313, 240, 100);
+        jButton1.setBounds(3, 3, 790, 470);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication7/Groupe 16@2x.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication7/guide.png"))); // NOI18N
         jLabel2.setText("jLabel2");
         jPanel1.add(jLabel2);
         jLabel2.setBounds(0, 0, 800, 480);
@@ -80,17 +67,6 @@ public class SelectPanier extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        new TriezFruits().setVisible(true);
-        this.setVisible(false);  // TODO add your handling code here:
-//        try {
-//            Process exec = Runtime.getRuntime().exec("sudo python /home/pi/hx711py/comjava.py");
-//            System.out.println("le scipt python a bien ete lance");
-//        } catch (IOException ex) {
-//            Logger.getLogger(SelectPanier.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         new TriezFruits().setVisible(true);
@@ -135,7 +111,6 @@ public class SelectPanier extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

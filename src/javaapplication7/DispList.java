@@ -80,17 +80,20 @@ public class DispList extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton2);
-        jButton2.setBounds(303, 370, 190, 80);
+        jButton2.setBounds(493, 330, 220, 110);
 
-        jButton3.setBackground(new java.awt.Color(255, 0, 0));
-        jButton3.setText("VALIDER SELECTION");
+        jButton3.setBorderPainted(false);
+        jButton3.setContentAreaFilled(false);
+        jButton3.setFocusPainted(false);
+        jButton3.setFocusable(false);
+        jButton3.setOpaque(false);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
         jPanel1.add(jButton3);
-        jButton3.setBounds(50, 370, 190, 80);
+        jButton3.setBounds(80, 330, 220, 110);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -106,9 +109,9 @@ public class DispList extends javax.swing.JFrame {
         jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
         jPanel1.add(jScrollPane2);
-        jScrollPane2.setBounds(30, 120, 500, 190);
+        jScrollPane2.setBounds(330, 40, 430, 190);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication7/Liste reconnue.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication7/ecran_select.png"))); // NOI18N
         jLabel2.setText("jLabel2");
         jPanel1.add(jLabel2);
         jLabel2.setBounds(0, 0, 800, 480);

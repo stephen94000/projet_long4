@@ -48,7 +48,7 @@ public class ErrorType extends javax.swing.JFrame {
         jPanel1.add(jButton1);
         jButton1.setBounds(10, 0, 780, 460);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication7/errorType.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication7/ecran_erreur.png"))); // NOI18N
         jLabel2.setText("jLabel2");
         jPanel1.add(jLabel2);
         jLabel2.setBounds(0, 0, 810, 480);

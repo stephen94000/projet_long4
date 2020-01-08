@@ -19,15 +19,6 @@ public class EndType extends javax.swing.JFrame {
      */
     public EndType() {
         initComponents();
-        System.out.println("WAITING 5 SEC TO NEXT SESSION");
-        try {
-            TimeUnit.SECONDS.sleep(5);
-        } catch (InterruptedException ex) {
-        Logger.getLogger(EndType.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        System.out.println("WAITING DONE, NEW SESSION LAUNCHED");
-        this.setVisible(false);     
-        new MainScreen().setVisible(true);
     }
 
     /**
@@ -57,7 +48,7 @@ public class EndType extends javax.swing.JFrame {
         jPanel1.add(jButton1);
         jButton1.setBounds(10, 0, 780, 460);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication7/Groupe 16.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication7/goodbye_screen.png"))); // NOI18N
         jLabel2.setText("jLabel2");
         jPanel1.add(jLabel2);
         jLabel2.setBounds(0, 0, 810, 480);
@@ -77,7 +68,15 @@ public class EndType extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        //jLabel3.setText(x);        // TODO add your handling code here:
+        System.out.println("WAITING 2 SEC TO NEXT SESSION");
+        try {
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException ex) {
+        Logger.getLogger(EndType.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println("WAITING DONE, NEW SESSION LAUNCHED");
+        this.setVisible(false);     
+        new MainScreen().setVisible(true);//jLabel3.setText(x);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
