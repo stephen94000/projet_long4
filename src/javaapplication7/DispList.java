@@ -109,7 +109,7 @@ public class DispList extends javax.swing.JFrame {
         jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
         jPanel1.add(jScrollPane2);
-        jScrollPane2.setBounds(330, 40, 430, 190);
+        jScrollPane2.setBounds(360, 70, 400, 140);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication7/ecran_select.png"))); // NOI18N
         jLabel2.setText("jLabel2");
@@ -170,7 +170,14 @@ public class DispList extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        
+        String fileError = "/home/pi/tensorflow1/models/research/object_detection/erreur/erreur.txt";
+        File f = new File(fileError);
+        if(f.exists() && !f.isDirectory()) { //GESTION D'ERREUR SI KG ET PIECE
+            this.setVisible(false);  
+            new ErrorType().setVisible(true);
+            f.delete();
+        // do something
+        }
         
         FileWriter myWriter = null;
         try {

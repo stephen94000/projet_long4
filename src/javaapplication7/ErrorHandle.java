@@ -34,13 +34,13 @@ public class ErrorHandle extends javax.swing.JFrame {
 
     //modify to read an element from rpi files.
 
-    public static String FilePath = "C:\\Users\\hamza\\Desktop\\Projet fruit\\facture\\facture_affichage.txt";
+    public static String FilePath = "/home/pi/tensorflow1/models/research/object_detection/factures/facture_affichage.txt";
     public File file =  new File(FilePath);
     public int Avocats, Bananes, Pomme, elem4, elem5 = 0;
     public int AvocatsIndex, BananesIndex, PommeIndex, elem4Index, elem5Index = 0;
     public double AvocatsPrice = 1.49;
-    public double BananesPrice = 3.58;
-    public double PommePrice = 2.89;
+    public double BananesPrice = 1.99;
+    public double PommePrice = 2.06;
     public double elem4Price = 2;
     public double elem5Price = 2;
     public double AvocatsPriceTTC , BananesPriceTTC, PommePriceTTC, elem4PriceTTC, elem5PriceTTC = 0;
@@ -87,17 +87,17 @@ public class ErrorHandle extends javax.swing.JFrame {
                 AvocatsType = String.valueOf(jTable1.getModel().getValueAt(j,1));
                 System.out.println("Type de vente : " + AvocatsType);
             }
-            if(jTable1.getModel().getValueAt(j,2).equals("Banane")){
+            if(jTable1.getModel().getValueAt(j,2).equals("banane")){
                 Bananes = Integer.parseInt((String)jTable1.getModel().getValueAt(j,0));
                 BananesIndex = j;
                 System.out.println("GET BANANE");
                 BananesType = String.valueOf(jTable1.getModel().getValueAt(j,1));
                 System.out.println("Type de vente : " + BananesType);
             }
-            if(jTable1.getModel().getValueAt(j,2).equals("Pomme")){
+            if(jTable1.getModel().getValueAt(j,2).equals("pomme")){
                 Pomme = Integer.parseInt((String)jTable1.getModel().getValueAt(j,0));
                 PommeIndex = j;
-                System.out.println("GET Pomme");
+                System.out.println("GET POMME");
                 PommeType = String.valueOf(jTable1.getModel().getValueAt(j,1));
                 System.out.println("Type de vente : " + PommeType);
             } 
@@ -276,16 +276,21 @@ public class ErrorHandle extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
+    String newFileFacture = "/home/pi/tensorflow1/models/research/object_detection/factures/facture_affichage.txt";
     // create a write
-    String path = "C:\\Users\\hamza\\Desktop\\Projet fruit\\facture\\correction.txt";
+    File f = new File(FilePath);
+        if(f.exists() && !f.isDirectory()) { //GESTION D'ERREUR SI KG ET PIECE
+            f.delete();
+        // do something
+        }
     // create a csv writer
-    try (PrintWriter writer = new PrintWriter(new File(path))){
+    try (PrintWriter writer = new PrintWriter(new File(newFileFacture))){
         StringBuilder header = new StringBuilder();
         header.append("Qte");
         header.append("\t");
         header.append("Type");
         header.append("\t");
-        header.append("Désign");
+        header.append("Design");
         header.append("\t");
         header.append("Prix/u");
         header.append("\t");
@@ -296,7 +301,7 @@ public class ErrorHandle extends javax.swing.JFrame {
             header.append("\t");
             header.append(AvocatsType);
             header.append("\t");
-            header.append("Avocat");
+            header.append("avocat");
             header.append("\t");
             header.append(String.valueOf(AvocatsPrice));
             header.append("\t");
@@ -308,7 +313,7 @@ public class ErrorHandle extends javax.swing.JFrame {
             header.append("\t");
             header.append(BananesType);
             header.append("\t");
-            header.append("Bananes");
+            header.append("banane");
             header.append("\t");
             header.append(String.valueOf(BananesPrice));
             header.append("\t");
@@ -320,7 +325,7 @@ public class ErrorHandle extends javax.swing.JFrame {
             header.append("\t");
             header.append(PommeType);
             header.append("\t");
-            header.append("Pomme");
+            header.append("pomme");
             header.append("\t");
             header.append(String.valueOf(PommePrice));
             header.append("\t");
@@ -361,9 +366,9 @@ public class ErrorHandle extends javax.swing.JFrame {
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
         
-        ///home/pi/tensorflow1/models/research/object_detection/hx711/temp/pesee_java.txt is the real path.
+        //  /home/pi/tensorflow1/models/research/object_detection/hx711/temp/pesee_java.txt is the real path.
         
-        File f = new File("C:\\Users\\hamza\\Desktop\\Projet fruit\\facture\\poids.txt");
+        File f = new File("/home/pi/tensorflow1/models/research/object_detection/hx711/temp/pesee_java.txt");
 
         while (!(f.isFile())) { 
             System.out.println("entree dans la boucle de verif du fichier 2");
@@ -382,7 +387,7 @@ public class ErrorHandle extends javax.swing.JFrame {
         try {
             
             while (df == null) {
-                br1 = new BufferedReader(new FileReader("C:\\Users\\hamza\\Desktop\\Projet fruit\\facture\\poids.txt"));
+                br1 = new BufferedReader(new FileReader(f));
                 System.out.println("toujours pas eu de pesee");
                 line = br1.readLine();
                 df = line;
