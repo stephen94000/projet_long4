@@ -69,8 +69,31 @@ public class EndType extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         System.out.println("WAITING 2 SEC TO NEXT SESSION");
+        FileWriter myWriter = null;
         try {
-            TimeUnit.SECONDS.sleep(3);
+            myWriter = new FileWriter("/home/pi/tensorflow1/models/research/object_detection/ordres/endfile.txt");
+        } catch (IOException ex) {
+            Logger.getLogger(DispList.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            myWriter.write("1");
+        } catch (IOException ex) {
+            Logger.getLogger(DispList.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            myWriter.close();
+        } catch (IOException ex) {
+            Logger.getLogger(DispList.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println("Successfully wrote to the file.");
+        try {
+            TimeUnit.MILLISECONDS.sleep(200);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(DispList.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println("WAIT 1 SEC DONE");
+        try {
+            TimeUnit.MILLISECONDS.sleep(200);        
         } catch (InterruptedException ex) {
         Logger.getLogger(EndType.class.getName()).log(Level.SEVERE, null, ex);
         }

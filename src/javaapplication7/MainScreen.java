@@ -70,14 +70,8 @@ public class MainScreen extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         new SelectPanier().setVisible(true);
-        System.out.println("Passage au premier ecran");
-        try { //METTRE LE CHEMIN DU NEURAL NET
-            Process exec = Runtime.getRuntime().exec("python3 /home/pi/tensorflow1/models/research/object_detection/Object_detection_picamera.py");
-            System.out.println("le scipt python a bien ete lance");
-        } catch (IOException ex) {
-            Logger.getLogger(SelectPanier.class.getName()).log(Level.SEVERE, null, ex);
-        }
         System.out.println("SCRIPT NEURAL NET LAUNCHED");
+        System.out.println("ECRAN PRINCIPAL");
         this.setVisible(false);        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 

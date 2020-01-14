@@ -15,6 +15,7 @@ import java.util.Date;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -26,16 +27,17 @@ public class DispList extends javax.swing.JFrame {
     //modify to read an element from rpi files.
     public static String FilePath = "/home/pi/tensorflow1/models/research/object_detection/factures/facture_affichage.txt";
     public File file =  new File(FilePath);
+    public double sousTotal = 0.0;
     /**
      * Creates new form NewJFrame1
      */
     public DispList() {
         initComponents();
         try {
-                
+                int i = 0;
                 BufferedReader br = new BufferedReader(new FileReader(FilePath));
                 String firstLine = br.readLine().trim();
-                String[] columnsName = firstLine.split("\\t");
+                String[] columnsName = firstLine.split("\t");
                 DefaultTableModel model;
                 model = (DefaultTableModel)jTable1.getModel();
                 model.setColumnIdentifiers(columnsName);
@@ -44,8 +46,18 @@ public class DispList extends javax.swing.JFrame {
                 
                 for (Object tableLine : tableLines) {
                     String line = tableLine.toString().trim();
-                    String[] dataRow = line.split("\\t");
+                    String[] dataRow = line.split("\t");
                     model.addRow(dataRow);
+                    i = i+1;
+                }
+                double tmp;
+                for (int j=0 ; j < i ; j++){
+                    if(jTable1.getModel().getValueAt(j,4) != null){
+                        tmp = Double.parseDouble((String)jTable1.getModel().getValueAt(j,4)); //PASSER EN DOUBLE OU INT SELON LE CAS !!
+                        sousTotal = sousTotal + tmp;
+                        jLabel1.setText(String.valueOf(sousTotal)+"€");
+                    }
+                    //PommeType = String.valueOf(jTable1.getModel().getValueAt(j,1));
                 }
             } catch (IOException ex) {
                 Logger.getLogger(DispList.class.getName()).log(Level.SEVERE, null, ex);
@@ -64,6 +76,9 @@ public class DispList extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
@@ -95,6 +110,33 @@ public class DispList extends javax.swing.JFrame {
         jPanel1.add(jButton3);
         jButton3.setBounds(80, 330, 220, 110);
 
+        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.setFocusable(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1);
+        jButton1.setBounds(70, 160, 240, 100);
+
+        jButton4.setBorderPainted(false);
+        jButton4.setContentAreaFilled(false);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton4);
+        jButton4.setBounds(640, 30, 33, 60);
+
+        jLabel1.setFont(new java.awt.Font("Franklin Gothic Book", 1, 28)); // NOI18N
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(630, 234, 140, 70);
+
+        jTable1.setFont(new java.awt.Font("Candara Light", 0, 14)); // NOI18N
+        jTable1.setForeground(new java.awt.Color(240, 240, 240));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -104,12 +146,15 @@ public class DispList extends javax.swing.JFrame {
             }
         ));
         jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-        jTable1.setColumnSelectionAllowed(true);
+        jTable1.setCellSelectionEnabled(false);
+        jTable1.setGridColor(new java.awt.Color(255, 255, 255));
+        jTable1.setOpaque(false);
+        jTable1.setSelectionBackground(new java.awt.Color(240, 240, 240));
         jScrollPane2.setViewportView(jTable1);
         jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
         jPanel1.add(jScrollPane2);
-        jScrollPane2.setBounds(360, 70, 400, 140);
+        jScrollPane2.setBounds(330, 110, 400, 120);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication7/ecran_select.png"))); // NOI18N
         jLabel2.setText("jLabel2");
@@ -135,12 +180,10 @@ public class DispList extends javax.swing.JFrame {
     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         SimpleDateFormat formatter = new SimpleDateFormat("dd_MM_yyyy_HH_mm_ss");  
-        Date date = new Date();  
-        
+        Date date = new Date();   
         System.out.println(formatter.format(date));  
         
         File afile = new File(FilePath);
-
         if(afile.renameTo(new File("/home/pi/tensorflow1/models/research/object_detection/factures/archives/facture_of " + date))){
             System.out.println("File is moved successful!");
         }
@@ -148,36 +191,32 @@ public class DispList extends javax.swing.JFrame {
             System.out.println("File is failed to move!");
         }
         
-        FileWriter myWriterClose = null;
-        try {
-            myWriterClose = new FileWriter("/home/pi/tensorflow1/models/research/object_detection/ordres/filenameerror.txt");
-        } catch (IOException ex) {
-            Logger.getLogger(DispList.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            myWriterClose.write("1");
-        } catch (IOException ex) {
-            Logger.getLogger(DispList.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            myWriterClose.close();
-        } catch (IOException ex) {
-            Logger.getLogger(DispList.class.getName()).log(Level.SEVERE, null, ex);
-        }
         this.setVisible(false);  
         new EndType().setVisible(true);
-              // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        try {
+            TimeUnit.MILLISECONDS.sleep(200);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(DispList.class.getName()).log(Level.SEVERE, null, ex);
+        }
         String fileError = "/home/pi/tensorflow1/models/research/object_detection/erreur/erreur.txt";
         File f = new File(fileError);
-        if(f.exists() && !f.isDirectory()) { //GESTION D'ERREUR SI KG ET PIECE
-            this.setVisible(false);  
-            new ErrorType().setVisible(true);
+        
+        if(f.exists()) { //GESTION D'ERREUR SI KG ET PIECE
             f.delete();
+            try {
+            TimeUnit.MILLISECONDS.sleep(200);
+            } catch (InterruptedException ex) {
+            Logger.getLogger(DispList.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            this.setVisible(false);
+            new ErrorType().setVisible(true);
         // do something
         }
+        
+        else{ //SINON, LIRE FICHIER DE FACTURE
         
         FileWriter myWriter = null;
         try {
@@ -197,14 +236,48 @@ public class DispList extends javax.swing.JFrame {
         }
         System.out.println("Successfully wrote to the file.");
         try {
-            TimeUnit.SECONDS.sleep(1);
+            TimeUnit.MILLISECONDS.sleep(200);
         } catch (InterruptedException ex) {
             Logger.getLogger(DispList.class.getName()).log(Level.SEVERE, null, ex);
         }
         System.out.println("WAIT 1 SEC DONE");
         new DispList().setVisible(true);
-        this.setVisible(false);         // TODO add your handling code here:
+        this.setVisible(false);
+        }// TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        new ErrorHandle().setVisible(true);// TODO add your handling code here:
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        FileWriter myWriter = null;
+        try {
+            myWriter = new FileWriter("/home/pi/tensorflow1/models/research/object_detection/ordres/endfile.txt");
+        } catch (IOException ex) {
+            Logger.getLogger(DispList.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            myWriter.write("1");
+        } catch (IOException ex) {
+            Logger.getLogger(DispList.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            myWriter.close();
+        } catch (IOException ex) {
+            Logger.getLogger(DispList.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println("Successfully wrote to the file.");
+        try {
+            TimeUnit.MILLISECONDS.sleep(200);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(DispList.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        new DispList().setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -255,8 +328,11 @@ public class DispList extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;

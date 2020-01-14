@@ -58,7 +58,7 @@ public class TriezFruits extends javax.swing.JFrame {
         jPanel1.add(jButton1);
         jButton1.setBounds(10, 10, 780, 460);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication7/posez_dans_panier.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/javaapplication7/avous_screen.png"))); // NOI18N
         jLabel2.setText("jLabel2");
         jPanel1.add(jLabel2);
         jLabel2.setBounds(0, 0, 810, 480);
@@ -78,50 +78,9 @@ public class TriezFruits extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        addWindowListener(new WindowAdapter(){
-        @Override
-    public void windowClosing(WindowEvent we){
-        System.exit(0);
-        }
-        });
-        System.out.println("lecture du tarage");
-
-        File f = new File("/home/pi/tensorflow1/models/research/object_detection/hx711/temp/tarage_java.txt");
-
-        while (!(f.isFile())) { 
-            System.out.println("entree dans la boucle de verif du fichier 1");
-            try {
-                // do something
-                TimeUnit.SECONDS.sleep(4);
-                System.out.println("delai de 1 s");
-            } catch (InterruptedException ex) {
-                Logger.getLogger(TriezFruits.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        BufferedReader br1 = null;
-        StringBuilder sb = new StringBuilder();
-        String line = null;
-        try {
-            String df = null;
-            while (df == null) {
-                br1 = new BufferedReader(new FileReader("/home/pi/tensorflow1/models/research/object_detection/hx711/temp/tarage_java.txt"));
-                System.out.println("toujours pas eu de 1");
-                line = br1.readLine();
-                df = line;
-                TimeUnit.SECONDS.sleep(1);
-                System.out.println(line);
-                
-                //changer la valeur du poids dans le label.
-            }
-        } catch (IOException ex) {
-            Logger.getLogger(TriezFruits.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InterruptedException ex) {
-                Logger.getLogger(TriezFruits.class.getName()).log(Level.SEVERE, null, ex);
-            }
         new DispList().setVisible(true);
         this.setVisible(false);
-        System.out.println("passage a l ecran d'affichage des listes");
-
+        System.out.println("ECRAN D'AMORCAGE AVANT LISTE");
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 

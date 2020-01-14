@@ -70,6 +70,7 @@ public class SelectPanier extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         new TriezFruits().setVisible(true);
+        System.out.println("GUIDE D'UTILISATION");
         this.setVisible(false);         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
